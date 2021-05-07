@@ -1,23 +1,27 @@
-FROM node:15.11.0-alpine3.10
+# FROM node:15.11.0-alpine3.10
 
-# Create app directory
-WORKDIR /app
+# # Create app directory
+# WORKDIR /app
 
-RUN apk add --no-cache \
-    make g++ git ca-certificates
+# RUN apk add --no-cache \
+#     make g++ git ca-certificates
 
-RUN npm config set unsafe-perm true && npm install -g typescript ts-node
+# RUN npm config set unsafe-perm true && npm install -g typescript ts-node
 
-COPY package*.json ./
+# COPY package*.json ./
 
-RUN npm install --ignore-scripts
+# RUN npm install --ignore-scripts
 
-COPY . .
+# COPY . .
 
-RUN npm run build
+# RUN npm run build
 
-EXPOSE 3000
+# EXPOSE 3000
 
-ENV NODE_ENV production
+# ENV NODE_ENV production
 
 #CMD ["node", "./dist/server.js"]
+
+FROM postgres:12
+ENV POSTGRES_PASSWORD postgres
+ENV POSTGRES_DB watcher-db
